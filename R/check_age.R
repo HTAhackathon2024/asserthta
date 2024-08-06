@@ -19,7 +19,7 @@ check_age <- function(x, stop_if_not = TRUE) {
   
   result <- tryCatch(
     {
-      check_discount_asserts(x)
+      check_age_asserts(x)
     },
     
     asserthta_type_error = function(e) {
