@@ -12,5 +12,6 @@ odds,non-negative,
 odd ratio,non-negative,
 inflation factor,non-negative,
 death state,death state row all 0 except a 1,
-state pop,sum across states in total pop,don’t lose people between cycles
-,,transition probability matrix
+state pop,sum across states in total pop,don?t lose people between cycles
+probability,,warning message if the sum-by-row equals to 1
+cycle correction, , sum of the first and last row have to be equal and only be half of other rows
