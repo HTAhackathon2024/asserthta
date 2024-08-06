@@ -116,7 +116,7 @@ check_markov_trace <- function(m_TR,
     # transition probability matrix that has eigenvalue 1 (this is usually just
     # everyone in the dead state)
     diag <- eigen(t(m_P))
-    if (any(m_TR[nrow(m_TR), ] - diag$vectors[, match(1, round(diag$values, 8))] > 1E8)) {
+    if (any(abs(m_TR[nrow(m_TR), ] - diag$vectors[, match(1, round(diag$values, 8))]) > 1E-08)) {
       message <- "Final state in Markov Trace is not as expected."
       no_warnings <- F
       if (stop_if_not) {
