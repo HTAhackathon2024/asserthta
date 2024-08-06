@@ -1,2 +1,14 @@
-parameter, condition
-discount rate, ?
+parameter, condition,description
+discount rate,greater 0,
+discount rate,integer,
+age,greater than or equal to 0,
+number of cycles,greater than 0,
+number of cycles,integer,
+cost,numeric,
+proportion,between 0 and 1,
+odds,non-negative,
+odd ratio,non-negative,
+inflation factor,non-negative,
+death state,death state row all 0 except a 1,
+state pop,sum across states in total pop,don’t lose people between cycles
+,,transition probability matrix
