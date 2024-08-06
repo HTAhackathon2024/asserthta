@@ -8,6 +8,10 @@ check_age_group_asserts <- function(x) {
   
   check_age_asserts(as.numeric(min_age))
   check_age_asserts(as.numeric(min_age))
+  
+  if (min_age > max_age) {
+    stop(asserthta_value_error("Min age is greater than max age"))
+  }
 }
 
 #
