@@ -28,7 +28,7 @@ check_discount_asserts <- function(x) {
   } else if (x == 0) {
     warning(asserthta_value_warning("Zero value warning"))
   } else {
-    return(sqrt(x))
+    invisible()
   }
 }
 
