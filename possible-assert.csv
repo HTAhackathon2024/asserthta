@@ -1,6 +1,8 @@
 parameter, condition,description
 discount rate,greater 0,
 discount rate,integer,
+discount rate,is there a half cycle correction,
+discount rate,is discounting at start or end of cycle,
 age,greater than or equal to 0,
 number of cycles,greater than 0,
 number of cycles,integer,
