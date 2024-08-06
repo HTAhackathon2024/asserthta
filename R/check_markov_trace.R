@@ -1,12 +1,11 @@
 #' Check Markov Trace
 #'
 #' This function checks the properties of a Markov trace conform to expectations,
-#' consistent with the specified transition probability matrix.
-#' That it is: numeric, values are between 0 and 1 with all rows summing to 1,
-#' has the correct number of columns consistent with the transition probability
-#' matrix, and that the final row corresponds to the eigenvector of the
-#' transition probability matrix that has eigenvalue 1 (this is usually just
-#' everyone in the dead state)
+#' That it is: numeric, values are between 0 and 1 with all rows summing to 1.
+#' Optionally, it checks it is consistent with a specified transition probability 
+#' matrix, i.e., that it has the correct number of columns and that the final 
+#' row corresponds to the eigenvector of the transition probability matrix that
+#' has eigenvalue 1 (this is usually just everyone in the dead state)
 #' Also allows users to check that the dead state is monotonically decreasing (if provided).
 #'
 #' @param m_TR The markov trace to be checked.
@@ -58,7 +57,7 @@
 #'
 #' @export
 check_markov_trace <- function(m_TR,
-                               m_P,
+                               m_P = NULL,
                                dead_state = NULL,
                                confirm_ok = F,
                                stop_if_not = F) {
@@ -99,30 +98,32 @@ check_markov_trace <- function(m_TR,
     }
   }
   
-  # Check that the number of columns is consistent with the transition
-  # probability matrix
-  if (ncol(m_TR) != ncol(m_P)) {
-    message <- "Markov Trace does not have same number of columns as transition
-    probability matrix"
-    no_warnings <- F
-    if (stop_if_not) {
-      stop(message)
-    } else{
-      warning(message)
+  if (!is.null(m_P)) {
+    # Check that the number of columns is consistent with the transition
+    # probability matrix
+    if (ncol(m_TR) != ncol(m_P)) {
+      message <- "Markov Trace does not have same number of columns as transition
+      probability matrix"
+      no_warnings <- F
+      if (stop_if_not) {
+        stop(message)
+      } else {
+        warning(message)
+      }
     }
-  }
-  
-  # Check that the final row corresponds to the eigenvector of the
-  # transition probability matrix that has eigenvalue 1 (this is usually just
-  # everyone in the dead state)
-  diag <- eigen(t(m_P))
-  if (any(m_TR[nrow(m_TR), ] - diag$vectors[, match(1, diag$values)] > 1E8)) {
-    message <- "Final state in Markov Trace is not as expected."
-    no_warnings <- F
-    if (stop_if_not) {
-      stop(message)
-    } else{
-      warning(message)
+    
+    # Check that the final row corresponds to the eigenvector of the
+    # transition probability matrix that has eigenvalue 1 (this is usually just
+    # everyone in the dead state)
+    diag <- eigen(t(m_P))
+    if (any(m_TR[nrow(m_TR), ] - diag$vectors[, match(1, diag$values)] > 1E8)) {
+      message <- "Final state in Markov Trace is not as expected."
+      no_warnings <- F
+      if (stop_if_not) {
+        stop(message)
+        } else {
+        warning(message)
+      }
     }
   }
   
