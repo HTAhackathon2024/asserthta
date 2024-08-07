@@ -15,6 +15,9 @@ check_age_group_asserts <- function(x) {
   if (min_age > max_age) {
     stop(asserthta_value_error("Min age is greater than max age"))
   }
+  if (min_age == max_age) {
+    warning(asserthta_value_warning("Min age is equal to max age"))
+  }
 }
 
 #
