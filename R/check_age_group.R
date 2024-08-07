@@ -41,11 +41,17 @@ check_age_group <- function(x, stop_if_not = TRUE) {
       message_group("Handling asserthta_value_error: ", e$message_group)
       # abort_execution("Encountered zero. Aborting...")
     },
+    asserthta_value_warning = function(e) {
+      message_group("Handling asserthta_value_warning: ", e$message_group)
+      # upper and/or lower elements of `x` are the same numbers. Is this what you intended?
+      # abort_execution("Encountered zero. Aborting...")
+    },
     error = function(e) {
       # Generic error handler for any other unexpected errors
       message_group("An unexpected error occurred: ", e$message_group)
     }
   )
+  # finally
   
   return(result)
 }
