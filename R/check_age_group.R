@@ -2,7 +2,10 @@
 #
 check_age_group_asserts <- function(x) {
   
-  ##TODO: may not be in this format
+  ##TODO: may not be in this format, e.g. [x-y), [x:y)
+  ##      look at stringsplit type functions for ideas
+  ##TODO: what about at the edge, e.g. 65+, >65, >=65 etc
+  
   min_age <- gsub(pattern = "^\\[([0-9]*)\\)", replacement = "\\1", x = agegrp)
   max_age <- gsub(pattern = "\\[[0-9]*,([0-9]*)\\)", replacement = "\\1", x = agegrp)
   
@@ -26,6 +29,8 @@ check_age_group <- function(x, stop_if_not = TRUE) {
     
     asserthta_type_error = function(e) {
       message_group("Handling asserthta_type_error: ", e$message_group)
+      # upper and/or lower elements of `x` are not numbers. Please ensure they are numeric, e.g. [0,9)
+      
       # abort_execution("Encountered a negative value. Aborting...")
     },
     asserthta_type_warning = function(e) {
