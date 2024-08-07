@@ -5,7 +5,7 @@ check_age_group_asserts <- function(x) {
   ##TODO: may not be in this format, e.g. [x-y), [x:y)
   ##      look at stringsplit type functions for ideas
   ##TODO: what about at the edge, e.g. 65+, >65, >=65 etc
-  
+  ##TODO: maybe create parse_age_group() first?
   min_age <- gsub(pattern = "^\\[([0-9]*)\\)", replacement = "\\1", x = agegrp)
   max_age <- gsub(pattern = "\\[[0-9]*,([0-9]*)\\)", replacement = "\\1", x = agegrp)
   
