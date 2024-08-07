@@ -10,7 +10,7 @@ check_age_group_asserts <- function(x) {
   max_age <- gsub(pattern = "\\[[0-9]*,([0-9]*)\\)", replacement = "\\1", x = agegrp)
   
   check_age_asserts(as.numeric(min_age))
-  check_age_asserts(as.numeric(min_age))
+  check_age_asserts(as.numeric(max_age))
   
   if (min_age > max_age) {
     stop(asserthta_value_error("Min age is greater than max age"))
